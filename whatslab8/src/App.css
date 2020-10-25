@@ -38,3 +38,14 @@
   width: 80px;
   font-weight: bold;
 }
+
+.tentativa1{
+  position: fixed;
+  left: 350px;
+  top: 350px;
+  margin: 4px;
+  padding-left: 6px;
+  background-color: white;
+  width: 200px;
+  
+}

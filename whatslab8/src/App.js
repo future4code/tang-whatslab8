@@ -5,27 +5,56 @@ import "./App.css";
 
 export class App extends React.Component {
   state = {
-    usuario: "",
-    texto: ""
-  };
+    mensagemEstrutura: [
+      {
+          usuario: "",
+          texto: ""
+      }
+    ],  
+    valorUsuario: '',
+    valorMensagem: ''
+    
+    };
 
   capturarUsuario = (event) => {
-    this.setState({ usuario: event.target.value });
+    this.setState({ valorUsuario: event.target.value });
+    
   }
 
   capturarMensagem = (event) => {
-    this.setState({ texto: event.target.value });
+    this.setState({ valorMensagem: event.target.value });
   }
 
   enviaMensagem = () => {
+    const  novaMensagem = {
+      usuario: this.state.valorUsuario,
+      texto: this.state.valorMensagem
+    }
+    const novasMensagens = [...this.state.mensagemEstrutura, novaMensagem]
+    this.setState({mensagemEstrutura: novasMensagens})
   }
 
   render() {
+    const mensagemNova = this.state.mensagemEstrutura.map((novaMensagem) => {
+      return(
+        <div>
+          <p className="nomeUsuario"><strong>
+            {novaMensagem.usuario}
+          </strong></p>
+          <p className="textoMensagem">
+            {novaMensagem.texto}
+          </p>
+        </div>
+      )
+    }
+    )
+    
+  
     return (
       <div>
         <div className="principal">
-          <div className="caixaMensagem">
-              <p></p>
+          <div className="tentativa1">
+                    {mensagemNova}
           </div>
           <div className="inputs">
               <input className="inputUsuario"
@@ -43,10 +72,8 @@ export class App extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
-
-
 }
 
 export default App;
